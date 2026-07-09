@@ -12,10 +12,10 @@ Below is the architectural block diagram of the design:
 ---
 
 ## 💻 Design Code
-You can find the source file [here](./traffic_light_controller.v). To copy the code quickly, use the block below:
+You can find the source file [here](./traffic_light_controller.sv). To copy the code quickly, use the block below:
 
-SystemVerilog
-// Traffic Light Controller FSM
+```systemverilog
+// 1. DESIGN CODE GOES HERE
 module traffic_light_controller (
     input  logic clk,           // System Clock
     input  logic reset,         // Active-high Reset
@@ -96,12 +96,15 @@ module traffic_light_controller (
             S3_NSR_EWY: begin lights_ns = 3'b100; lights_ew = 3'b010; end // NS Red, EW Yellow
             default:    begin lights_ns = 3'b100; lights_ew = 3'b100; end // Default All Red
         endcase
+    end
 
-Test Bench Code
+endmodule
+endcase
+
+// 2.TESTBENCH CODE GOES HERE
 `timescale 1ns/1ps
 
 module testbench;
-
     // Inputs to the UUT (Unit Under Test)
     logic clk;
     logic reset;
@@ -145,8 +148,4 @@ module testbench;
         $display("Simulation finished successfully.");
         $finish;
     end
-
-endmodule
-    end
-
 endmodule
